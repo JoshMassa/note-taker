@@ -1,11 +1,12 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text Placeholder Temp"
+        "title": "My First Saved Note",
+        "text": "For Testing Purposes Only",
+        "id": "96a51342-cb1b-4cf9-b5af-2b37cba809a0"
     },
     {
-        "title": "Complete Module 11 Project",
-        "text": "This project is due by March 14th.",
-        "note_id": "1c13ef6a-dd1f-4464-b768-41c37f420fe9"
+        "title": "My Second Saved Note",
+        "text": "This Is Great",
+        "id": "78a542bd-afc7-4e3a-b8e6-b3912b5f6967"
     }
 ]

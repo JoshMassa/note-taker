@@ -15,12 +15,12 @@ notes.post('/', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4()
+            id: uuidv4()
         };
         readAndAppend(newNote, './db/db.json');
         res.json(`Note added successfully`);
     } else {
-        res.error('Error adding new note');
+        res.status(500).json('Error adding new note');
     }
 });
 
