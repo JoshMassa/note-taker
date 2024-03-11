@@ -6,16 +6,34 @@ const note = require('../db/db.json')
 // API GET Route for retrieving all notes
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
+    const noteIdToRetrieve = req.query.id;
+
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
-            res.status(500).json('Error reading notes');
+            res.status(500).json({ msg: 'Error reading notes' });
             return;
         }
-        res.json(JSON.parse(data));
+
+        const notesData = JSON.parse(data);
+
+        if (noteIdToRetrieve) {
+            // If ID parameter is provided, find and return the specific note
+            const selectedNote = notesData.find((note) => note.id === noteIdToRetrieve);
+
+            if (selectedNote) {
+                res.json(selectedNote);
+            } else {
+                res.status(404).json({ msg: 'Note not found.' });
+            }
+        } else {
+            // If no ID parameter is provided, return all notes
+            res.json(notesData);
+        }
     });
 });
 
+// API POST Route for adding new notes
 notes.post('/', (req, res) => {
     const { title, text } = req.body;
 
@@ -49,8 +67,9 @@ notes.post('/', (req, res) => {
     }
 });
 
+// API DELETE Route for deleting notes
 notes.delete('/:id', (req, res) => {
-    const noteToDelete = req.params.id;
+    const noteToDelete = req.query.id;
     const updatedNotes = note.filter(
         (note) => note.id !== noteToDelete);
     fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (err) => {

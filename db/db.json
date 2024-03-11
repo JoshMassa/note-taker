@@ -3,5 +3,20 @@
         "title": "Finalize Mod 11 Project",
         "text": "Make sure to read through the acceptance criteria for the project to satisfy the User Story.",
         "id": "a61754a5-fa47-4f6a-810b-9a4d56f3ce2d"
+    },
+    {
+        "title": "Delete this note",
+        "text": "please delete",
+        "id": "180508c2-f006-4646-9a0c-e11dd1985293"
+    },
+    {
+        "title": "random note",
+        "text": "this is a random note",
+        "id": "701f9ae2-ac40-42f1-9555-120b3376eeac"
+    },
+    {
+        "title": "One more time",
+        "text": "The last note to delete",
+        "id": "61b321f9-f522-42d6-9811-a15ccf0a0156"
     }
 ]
