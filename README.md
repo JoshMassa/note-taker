@@ -1,128 +1,85 @@
-# 11 Express.js: Note Taker
+# Note Taker [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Description
+An application that allows users to record and save notes so they can organize their thoughts and keep track of tasks they need to complete.
+## Table of Contents
+- [Features](#features)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+- [Credits](#credits)
+- [License](#license)
+## Features
 
-## Your Task
+1. Landing Page
 
-Your assignment is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
+    * Upon navigating to the application's URL, the user will see a landing page that allows them to toggle between their notes and the landing page.
 
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
+2. Note Taker
 
-## User Story
+    * Clicking on the "Get Started" button on the landing page will navigate the user to the Note Taker page that allows them to create and save notes. Once on the Note Taker page, clicking on "Note Taker" located at the top left of the page will nagivate the user back to the landing page.
 
-```
-AS A small business owner
-I WANT to be able to write and save notes
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
-```
+3. Save Note
 
-## Acceptance Criteria
+    * On the Note Taker page, when the user enters text into the "Note Title" and "Note Text" sections, a "Save Note" button appears, allowing them to save the note for future reference.
 
-```
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a "Save Note" button and a "Clear Form" button appear in the navigation at the top of the page
-WHEN I click on the Save button
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes and the buttons in the navigation disappear
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column and a "New Note" button appears in the navigation
-WHEN I click on the "New Note" button in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears
-```
+4. Clear Form
 
-## Mock-Up
+    * When creating a new note, if there is text present in either the "Note Title" or "Note Text" sections, a "Clear Form" button will appear allowing the user to clear the form with one click as needed.
 
-The following GIF shows the web application's appearance and functionality:
+5. Show Note
 
-![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./public/assets/images/11-express-homework-demo.gif)
+    * While the user is on the Note Taker page, if there are any saved notes, the user can click the note to have the note title and note text render in the section to the right of the saved notes.
 
-## Getting Started
+6. Delete Button
 
-On the back end, the application should include a `db.json` file that will be used to store and retrieve notes using the `fs` module.
+    * When a user saves a note, they will notice a red trash can icon appear next to the note. The user can click this icon to delete that note.
 
-The following HTML routes should be created:
+7. Technologies Used
 
-* `GET /notes` should return the `notes.html` file.
+    * HTML5
+    * CSS
+    * JavaScript
+    * Nodemon
+    * Express.js
+    * Node.js
+    * VS Code
+    * GitBash
+    * Heroku
+    * Heroku CLI
 
-* `GET *` should return the `index.html` file.
 
-The following API routes should be created:
+## Usage
+To use this app, click [here](https://note-taker-jmp-5dc91171bb01.herokuapp.com/).
 
-* `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
+To view this projects GitHub repository, click [here](https://github.com/JoshMassa/note-taker).
 
-* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
+The Landing Page should resemble the following image:
 
-## Bonus
+![Landing Page](./public/assets/images/landing-page.png)
 
-You haven’t learned how to handle DELETE requests, but this application offers that functionality on the front end. As a bonus, try to add the DELETE route to the application using the following guideline:
+The Note Taker page should resemble the following image:
 
-* `DELETE /api/notes/:id` should receive a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
+![Note Taker Page](./public/assets/images/note-taker-page.png)
 
-## Grading Requirements
+When clicking on a saved note, the Note Taker page should resemble the following image:
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+![Saved Note Display When Clicked](./public/assets/images/saved-note-display.png)
 
-This Challenge is graded based on the following criteria:
 
-### Technical Acceptance Criteria: 40%
+## Contributing
+1. Fork the repository 
+ 2. Create a new branch for your contribution 
+ 3. Make your changes and commit them 
+ 4. Push your local branch to the remote repository and submit a pull request
+## Tests
+There are currently no tests for this application.
+## Questions
+You can find my GitHub profile [here](https://www.github.com/JoshMassa). 
 
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * Application front end must connect to an Express.js back end.
-
-  * Application back end must store notes that have a unique id in a JSON file.
-
-  * Application must be deployed to Heroku.
-
-### Deployment: 36%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 11%
-
-* Application console is free of errors.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-### Bonus: +10 Points
-
-Fulfilling the following can add up to 10 points to your grade. Note that the highest grade you can achieve is still 100:
-
-* Application allows users to delete notes.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
-- - -
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+If you have any questions, you can email me by clicking [here](mailto:joshuamassapelleter@outlook.com).
+## Credits
+[Deploying a node.js app on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)<br/>
+[Installing and using uuid](https://www.npmjs.com/package/uuid)
+## License
+This project is covered by &nbsp;&nbsp;[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
