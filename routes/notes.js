@@ -3,7 +3,7 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid')
 const note = require('../db/db.json')
 
-// API GET Route for retrieving all notes
+// API GET Route that allows you to get all notes or search for a specific note using its uuid
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
     const noteIdToRetrieve = req.query.id;
@@ -69,7 +69,7 @@ notes.post('/', (req, res) => {
 
 // API DELETE Route for deleting notes
 notes.delete('/:id', (req, res) => {
-    const noteToDelete = req.query.id;
+    const noteToDelete = req.params.id;
     const updatedNotes = note.filter(
         (note) => note.id !== noteToDelete);
     fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (err) => {
