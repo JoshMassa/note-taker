@@ -1,12 +1,19 @@
 const notes = require('express').Router();
-const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils')
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid')
 const note = require('../db/db.json')
 
 // API GET Route for retrieving all notes
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json('Error reading notes');
+            return;
+        }
+        res.json(JSON.parse(data));
+    });
 });
 
 notes.post('/', (req, res) => {
@@ -18,8 +25,25 @@ notes.post('/', (req, res) => {
             text,
             id: uuidv4()
         };
-        readAndAppend(newNote, './db/db.json');
-        res.json(`Note added successfully`);
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json('Error adding new note');
+                return;
+            }
+            const notes = JSON.parse(data);
+            notes.push(newNote);
+
+            fs.writeFile('./db/db.json', JSON.stringify(notes, null, 4), (err) => {
+                if (err) {
+                    console.error('Error saving updated notes to db.json', err);
+                    res.status(500).json('Error adding new note');
+                } else {
+                    console.info('Note added successfully');
+                    res.json(`Note added successfully`);
+                }
+            });
+        });
     } else {
         res.status(500).json('Error adding new note');
     }
@@ -29,18 +53,14 @@ notes.delete('/:id', (req, res) => {
     const noteToDelete = req.params.id;
     const updatedNotes = note.filter(
         (note) => note.id !== noteToDelete);
-    if (updatedNotes.length < note.length) {
-        writeToFile('./db/db.json', updatedNotes)
-        .then(() => {
-            res.status(200).json({ msg: 'Note deleted successfully' })
-        })
-        .catch((error) => {
-            console.error('Error saving updated notes to db.json', error)
+    fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (err) => {
+        if (err) {
+            console.error('Error saving updated notes to db.json', err);
             res.status(500).json({ msg: 'Error' });
-        });
-    } else {
-        res.status(404).json({ msg: 'Note not found.' });
-    }
+            return;
+        }
+        res.status(200).json({ msg: 'Note deleted successfully' });
+    });
 });
 
 module.exports = notes;
