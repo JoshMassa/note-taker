@@ -1,6 +1,7 @@
 const notes = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
+const { readFromFile, writeToFile, readAndAppend } = require('../helpers/fsUtils')
 const { v4: uuidv4 } = require('uuid')
+const note = require('../db/db.json')
 
 // API GET Route for retrieving all notes
 notes.get('/', (req, res) => {
@@ -21,6 +22,24 @@ notes.post('/', (req, res) => {
         res.json(`Note added successfully`);
     } else {
         res.status(500).json('Error adding new note');
+    }
+});
+
+notes.delete('/:id', (req, res) => {
+    const noteToDelete = req.params.id;
+    const updatedNotes = note.filter(
+        (note) => note.id !== noteToDelete);
+    if (updatedNotes.length < note.length) {
+        writeToFile('./db/db.json', updatedNotes)
+        .then(() => {
+            res.status(200).json({ msg: 'Note deleted successfully' })
+        })
+        .catch((error) => {
+            console.error('Error saving updated notes to db.json', error)
+            res.status(500).json({ msg: 'Error' });
+        });
+    } else {
+        res.status(404).json({ msg: 'Note not found.' });
     }
 });
 

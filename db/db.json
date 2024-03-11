@@ -1,12 +1,7 @@
 [
     {
-        "title": "My First Saved Note",
-        "text": "For Testing Purposes Only",
-        "id": "96a51342-cb1b-4cf9-b5af-2b37cba809a0"
-    },
-    {
-        "title": "My Second Saved Note",
-        "text": "This Is Great",
-        "id": "78a542bd-afc7-4e3a-b8e6-b3912b5f6967"
+        "title": "Finalize Mod 11 Project",
+        "text": "Make sure to read through the acceptance criteria for the project to satisfy the User Story.",
+        "id": "a61754a5-fa47-4f6a-810b-9a4d56f3ce2d"
     }
 ]
