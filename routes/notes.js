@@ -1,7 +1,6 @@
 const notes = require('express').Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid')
-const note = require('../db/db.json')
 
 // API GET Route that allows you to get all notes or search for a specific note using its uuid
 notes.get('/', (req, res) => {
@@ -70,7 +69,6 @@ notes.post('/', (req, res) => {
 // API DELETE Route for deleting notes
 notes.delete('/:id', (req, res) => {
     const noteToDelete = req.params.id;
-    console.log('noteToDelete', noteToDelete)
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
@@ -78,10 +76,8 @@ notes.delete('/:id', (req, res) => {
             return;
         }
         const notes = JSON.parse(data);
-        console.log('notes', notes);
         const updatedNotes = notes.filter(
             (note) => note.id !== noteToDelete);
-        console.log('updatedNotes', updatedNotes);
         fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), 
         (err) => {
             if (err) {
