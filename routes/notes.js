@@ -70,16 +70,28 @@ notes.post('/', (req, res) => {
 // API DELETE Route for deleting notes
 notes.delete('/:id', (req, res) => {
     const noteToDelete = req.params.id;
-    const updatedNotes = note.filter(
-        (note) => note.id !== noteToDelete);
-    fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (err) => {
+    console.log('noteToDelete', noteToDelete)
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
-            console.error('Error saving updated notes to db.json', err);
-            res.status(500).json({ msg: 'Error' });
+            console.error(err);
+            res.status(500).json('Error adding new note');
             return;
         }
-        res.status(200).json({ msg: 'Note deleted successfully' });
-    });
+        const notes = JSON.parse(data);
+        console.log('notes', notes);
+        const updatedNotes = notes.filter(
+            (note) => note.id !== noteToDelete);
+        console.log('updatedNotes', updatedNotes);
+        fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), 
+        (err) => {
+            if (err) {
+                console.error('Error saving updated notes to db.json', err);
+                res.status(500).json({ msg: 'Error' });
+                return;
+            }
+            res.status(200).json({ msg: 'Note deleted successfully' });
+        });
+    })
 });
 
 module.exports = notes;
