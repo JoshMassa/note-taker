@@ -76,3 +76,117 @@ body {
   padding: 20px;
   cursor: pointer;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .note-title {
+    font-size: 2.5rem;
+  }
+
+  .note-textarea {
+    width: 94%;
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 425px) and (max-width: 767px) {
+  .note-title {
+    font-size: 1.45rem;
+  }
+
+  .note-textarea {
+    font-size: 0.8rem;
+    width: 94%;
+    height: 150px;
+  }
+
+  .list-item-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .list-container i {
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 424px) {
+  .note-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .note-textarea {
+    width: 93%;
+  }
+
+  .list-item-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .list-container i {
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .list-group-item {
+    text-align: center;
+    padding: 5px !important;
+  }
+
+  .btn-sm {
+    --bs-btn-font-size: 0.7rem;
+  }
+
+  .icons {
+    display: flex;
+    gap: 15px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 374px) {
+  .note-title {
+    font-size: 1.1rem;
+  }
+
+  .note-textarea {
+    width: 93%;
+  }
+
+  .list-item-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .list-container i {
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .list-group-item {
+    text-align: center;
+    padding: 5px !important;
+  }
+
+  .btn-sm {
+    --bs-btn-font-size: 0.7rem;
+  }
+
+  .icons {
+    display: flex;
+    gap: 15px;
+    height: 30px;
+    margin: 0 10px 0 0;
+  }
+}
